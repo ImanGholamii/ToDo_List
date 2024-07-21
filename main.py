@@ -73,7 +73,7 @@ def view_all_task(dictionary=tasks):
 
 
 def search_task_title():
-    """Search tasks by title"""
+    """Search a specific task by title"""
     print("Searching task... 🔍")
     title = input("What is your task Title? ").title()
     if title in tasks:
@@ -83,6 +83,7 @@ def search_task_title():
 
 
 def search_task_component():
+    """Search in all task components"""
     global search_results
     search_results = {}
     print("Searching task components ... 🔍")
@@ -100,8 +101,10 @@ def search_task_component():
 
 
 def filter_by_priority():
-    """Filter tasks by priorities 🔻"""
-    pass
+    """Filters tasks by priorities 🔻"""
+    for title in tasks:
+        if tasks[title]["is_important"]:
+            show_task(dictionary=tasks, title=title)
 
 
 def main():
