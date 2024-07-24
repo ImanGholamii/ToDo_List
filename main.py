@@ -23,7 +23,7 @@ def check_title(title: str):
         duplicate_title_counter += 1
         return title
     elif title == "":
-        title = "No_Title_" + str(untitled_task_counter)
+        title = "No Title." + str(untitled_task_counter)
         untitled_task_counter += 1
         return title
     else:
@@ -47,7 +47,9 @@ def remove_task():
     """remove task from tasks dict by prompt title"""
     title = input("deleting task...\nWhat is your task Title to delete? ").title()
     if title in tasks:
+        print(f"🔄 Deleting {title}...")
         del tasks[title]
+        print(f"✔️ Deleted Successfully!")
     else:
         print("Task not found")
 
@@ -58,11 +60,12 @@ def update_task():
 
     if title in tasks:
         new_component = input("What is your task Component? ")
-
+        print(f"🔄 Updating {title}'s Content...")
         tasks[title] = {
             "component": new_component,
             "is_important": set_priority_to_task(),
         }
+        print(f"✔️ Updated Successfully!")
     else:
         print("Task not found")
 
