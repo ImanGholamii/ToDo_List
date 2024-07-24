@@ -119,10 +119,14 @@ def search_task_component():
 def filter_by_priority():
     """Filters tasks by priorities 🔻"""
     if len(tasks) != 0:
-        print("Filtered tasks by priority 🔻")
+        print("Filtered tasks by priority (🔻)")
+        important_task_found = False
         for title in tasks:
             if tasks[title]["is_important"]:
                 show_task(dictionary=tasks, title=title)
+                important_task_found = True
+        if not important_task_found:
+            print(" (❗) No important tasks found!")
     else:
         print("Task not found!")
 
