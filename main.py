@@ -118,15 +118,19 @@ def search_task_component():
 
 def filter_by_priority():
     """Filters tasks by priorities 🔻"""
-    for title in tasks:
-        if tasks[title]["is_important"]:
-            show_task(dictionary=tasks, title=title)
+    if len(tasks) != 0:
+        print("Filtered tasks by priority 🔻")
+        for title in tasks:
+            if tasks[title]["is_important"]:
+                show_task(dictionary=tasks, title=title)
+    else:
+        print("Task not found!")
 
 
 def main():
     while True:
         what_to_do = input(
-            "What do you want to do? \n_ 1) add new task\n_ 2)"
+            "\nWhat do you want to do? \n_ 1) add new task\n_ 2)"
             " modify existing task\n_ 3) delete a task\n_ 4) view all tasks\n_ 5) search in task title\n"
             "_ 6) search in task component\n_ 7) filter by priority\n_ 8) exit the program\n>>> ")
         if what_to_do == "1":
