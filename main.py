@@ -1,5 +1,6 @@
 tasks = {}
-task_counter = 1
+untitled_task_counter = 1
+duplicate_title_counter = 1
 
 
 def set_priority_to_task():
@@ -14,12 +15,27 @@ def set_priority_to_task():
     return set_priority
 
 
+def check_title(title: str):
+    """Check title Validity (repetitive and existence)"""
+    global untitled_task_counter, duplicate_title_counter
+    if title in tasks:
+        title = title + str(".") + str(duplicate_title_counter)
+        duplicate_title_counter += 1
+        return title
+    elif title == "":
+        title = "No_Title_" + str(untitled_task_counter)
+        untitled_task_counter += 1
+        return title
+    else:
+        return title
+
+
 def add_task():
     """Add a new task"""
-    global task_counter
-    title_input, component = input("What is your task Title? ").strip(), input("What is your task Component? ").strip()
-    title = title_input.title() if title_input else "Task" + str(task_counter)
-    task_counter += 1
+    global untitled_task_counter
+    title_input, component = input("What is your task Title? ").strip().title(), input(
+        "What is your task Component? ").strip()
+    title = check_title(title=title_input)
     tasks[title] = {
         "component": component,
         "is_important": set_priority_to_task(),
